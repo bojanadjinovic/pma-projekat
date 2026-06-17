@@ -14,6 +14,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <!-- TITLE -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,6 +32,7 @@
             android:textColor="#8A8A6A"
             android:layout_marginBottom="16dp" />
 
+        <!-- INGREDIENT OF THE DAY CARD -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="200dp"
@@ -74,8 +76,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/ingredient_desc"
-                        android:textSize="14sp"
+                        android:text="Good for: Oily, acne-prone\nAvoid if: Very sensitive (high %)"
+                        android:textSize="13sp"
                         android:textColor="#6B6B4E"
                         android:layout_marginTop="6dp" />
 
@@ -84,8 +86,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/learn_more"
-                        android:backgroundTint="#5A4E6B"
-                        android:textColor="#FFFFFF"
+                        android:backgroundTint="#C8C49A"
+                        android:textColor="#6B6B4E"
                         android:layout_marginTop="12dp" />
 
                 </LinearLayout>
@@ -94,6 +96,60 @@
 
         </androidx.cardview.widget.CardView>
 
+        <!-- SKIN TYPES -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Skin Types"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#6B6B4E"
+            android:layout_marginBottom="12dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/btnOily"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="Oily"
+                android:gravity="center"
+                android:background="#EFE8B8"
+                android:textColor="#6B6B4E"
+                android:textSize="14sp"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:id="@+id/btnSensitive"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="Sensitive"
+                android:gravity="center"
+                android:background="#EFE8B8"
+                android:textColor="#6B6B4E"
+                android:textSize="14sp"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:id="@+id/btnDry"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="Dry"
+                android:gravity="center"
+                android:background="#EFE8B8"
+                android:textColor="#6B6B4E"
+                android:textSize="14sp"/>
+
+        </LinearLayout>
+
+        <!-- DAILY TIP CARD -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -137,6 +193,7 @@
 
         </androidx.cardview.widget.CardView>
 
+        <!-- ROUTINE GUIDE CARD -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

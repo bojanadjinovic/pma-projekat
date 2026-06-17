@@ -1,53 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="#E6E2C8"
     tools:context=".SearchFragment">
 
-    <!-- 1) START VIEW -->
+    <!-- SEARCH BAR - uvek vidljiv gore -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:paddingTop="32dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="#6B6B4E"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/etSearch"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Search ingredient..."
+            android:padding="12dp"
+            android:background="#FFFFFF"
+            android:textColor="#333333"
+            android:textColorHint="#AAAAAA"
+            android:inputType="text"
+            android:imeOptions="actionSearch"/>
+
+    </LinearLayout>
+
+    <!-- START VIEW - prikazuje se kad je polje prazno -->
     <androidx.core.widget.NestedScrollView
         android:id="@+id/searchStartLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp"
-            android:paddingTop="32dp">
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="16dp">
 
-            <!-- TITLE -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Search"
-                android:textSize="26sp"
-                android:textStyle="bold"
-                android:textColor="#6B6B4E"
-                android:layout_marginBottom="16dp"/>
-
-            <!-- SEARCH BAR -->
-            <EditText
-                android:id="@+id/etSearch"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:hint="Search ingredient"
-                android:padding="12dp"
-                android:background="#FFFFFF"
-                android:textColor="#333333"/>
-
-            <!-- SUGGESTIONS -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Try searching for"
                 android:textStyle="bold"
                 android:textColor="#6B6B4E"
-                android:layout_marginTop="24dp"/>
+                android:layout_marginTop="16dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -56,14 +68,13 @@
                 android:textColor="#8A8A6A"
                 android:layout_marginTop="8dp"/>
 
-            <!-- SKIN TYPE -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="By Skin Type"
                 android:textStyle="bold"
                 android:textColor="#6B6B4E"
-                android:layout_marginTop="32dp"/>
+                android:layout_marginTop="24dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -72,46 +83,47 @@
                 android:layout_marginTop="12dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
                     android:text="Oily"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="8dp"
-                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:background="#EFE8B8"
+                    android:textColor="#6B6B4E"
+                    android:layout_marginEnd="8dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:text="Sensitive"
+                    android:gravity="center"
+                    android:background="#EFE8B8"
+                    android:textColor="#6B6B4E"
+                    android:layout_marginEnd="8dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:text="Dry"
+                    android:gravity="center"
+                    android:background="#EFE8B8"
                     android:textColor="#6B6B4E"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sensitive"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="8dp"
-                    android:background="#FFFFFF"
-                    android:textColor="#6B6B4E"
-                    android:layout_marginStart="8dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Dry"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="8dp"
-                    android:background="#FFFFFF"
-                    android:textColor="#6B6B4E"
-                    android:layout_marginStart="8dp"/>
             </LinearLayout>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <!-- 2) LIST VIEW (posle klika na search) -->
+    <!-- REZULTATI - prikazuje se kad korisnik kuca -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerSearch"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#E6E2C8"
-        android:padding="16dp"
+        android:paddingHorizontal="16dp"
         android:visibility="gone"
         tools:listitem="@android:layout/simple_list_item_1"/>
 
-</FrameLayout>
+</LinearLayout>

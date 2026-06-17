@@ -23,35 +23,60 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        // REŠENJE ZA WELCOME TEKST: Ako u XML-u imaš tvWelcome, skloniti čudne simbole
-        // Ako ti se XML buni za ovaj red, slobodno ga zakomentariši
         view.findViewById<TextView>(R.id.tvWelcome)?.text = "Welcome back!"
 
-        // PRONAĐI DUGME: Tražimo tvoje "Learn more" dugme unutar kartice
-        // Proveri da li ti se dugme u fragment_home.xml tačno zove btnLearnMore ili slično
+        // Learn more dugme
         val btnLearnMore = view.findViewById<Button>(R.id.btnLearnMore)
-
         btnLearnMore?.setOnClickListener {
-            val learnFragment = LearnFragment()
+            openLearnFragment("Niacinamide")
+        }
 
-            // Pakujemo Niacinamide pošto je on "Ingredient of the Day" na tvojoj slici
-            val bundle = Bundle().apply {
-                putString("ingredient_name", "Niacinamide")
-            }
-            learnFragment.arguments = bundle
+        // Skin Type dugmici
+        val btnOily = view.findViewById<TextView>(R.id.btnOily)
+        val btnSensitive = view.findViewById<TextView>(R.id.btnSensitive)
+        val btnDry = view.findViewById<TextView>(R.id.btnDry)
 
-            // Otvaramo LearnFragment
-            val activity = context as AppCompatActivity
-            activity.supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, learnFragment)
-                .commit()
+        btnOily?.setOnClickListener {
+            highlightButton(btnOily, btnSensitive, btnDry)
+            openLearnFragment("Oily")
+        }
 
-            // Pomeramo i donju navigaciju na 'learn' tab
-            val bottomNav = activity.findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.navbar)
-            bottomNav.selectedItemId = R.id.learn
+        btnSensitive?.setOnClickListener {
+            highlightButton(btnSensitive, btnOily, btnDry)
+            openLearnFragment("Sensitive")
+        }
+
+        btnDry?.setOnClickListener {
+            highlightButton(btnDry, btnOily, btnSensitive)
+            openLearnFragment("Dry")
         }
 
         return view
+    }
+
+    private fun highlightButton(selected: TextView, vararg others: TextView) {
+        selected.setBackgroundColor(android.graphics.Color.parseColor("#A8A86A"))
+        selected.setTextColor(android.graphics.Color.parseColor("#FFFFFF"))
+        others.forEach {
+            it.setBackgroundColor(android.graphics.Color.parseColor("#EFE8B8"))
+            it.setTextColor(android.graphics.Color.parseColor("#6B6B4E"))
+        }
+    }
+
+    private fun openLearnFragment(skinType: String) {
+        val learnFragment = LearnFragment()
+        val bundle = Bundle().apply {
+            putString("skin_type", skinType)
+        }
+        learnFragment.arguments = bundle
+
+        val activity = context as AppCompatActivity
+        activity.supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, learnFragment)
+            .commit()
+
+        val bottomNav = activity.findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.navbar)
+        bottomNav.selectedItemId = R.id.learn
     }
 
     override fun onDestroyView() {
