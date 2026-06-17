@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E6E2C8">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- TITLE -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Learn"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="#6B6B4E"
+            android:layout_marginBottom="20dp"/>
+
+        <!-- INGREDIENT OF THE DAY CARD -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#FFFFFF"
+            android:padding="16dp"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ingredient of the Day"
+                android:textSize="14sp"
+                android:textColor="#8A8A6A"/>
+
+            <TextView
+                android:id="@+id/tvIngredientTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Niacinamide"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#6B6B4E"
+                android:layout_marginTop="8dp"/>
+
+            <TextView
+                android:id="@+id/tvIngredientDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Niacinamide helps strengthen the skin barrier, reduce inflammation and improve texture."
+                android:textSize="14sp"
+                android:textColor="#8A8A6A"
+                android:layout_marginTop="8dp"/>
+
+            <!-- pill -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Oily"
+                android:textSize="12sp"
+                android:textColor="#6B6B4E"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                android:background="#EFE8B8"
+                android:layout_marginTop="12dp"/>
+        </LinearLayout>
+
+        <!-- SKINCARE BASICS CARD -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#FFFFFF"
+            android:padding="16dp"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Skincare basics"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#6B6B4E"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="How to build a simple and effective routine?"
+                android:textSize="14sp"
+                android:textColor="#8A8A6A"
+                android:layout_marginTop="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cleanser  •  Serum  •  Moisturizer  •  Sunscreen"
+                android:textSize="14sp"
+                android:textColor="#6B6B4E"
+                android:layout_marginTop="12dp"/>
+        </LinearLayout>
+
+        <!-- EXTRA CONTENT (da ne bude prazno) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#FFFFFF"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Did you know?"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#6B6B4E"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Using sunscreen daily is the most effective anti-aging step in skincare."
+                android:textSize="14sp"
+                android:textColor="#8A8A6A"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

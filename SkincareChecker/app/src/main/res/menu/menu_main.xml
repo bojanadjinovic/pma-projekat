@@ -1,0 +1,42 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.skincarechecker.MainActivity">
+    <item
+        android:id="@+id/home"
+        android:orderInCategory="100"
+        android:title="Home"
+        app:showAsAction="never"
+        android:icon="@drawable/baseline_home_24"/>
+
+    <item
+        android:id="@+id/search"
+        android:orderInCategory="100"
+        android:title="Search"
+        app:showAsAction="never"
+        android:icon="@drawable/baseline_search_24"/>
+
+
+    <item
+        android:id="@+id/learn"
+        android:orderInCategory="100"
+        android:title="Learn"
+        app:showAsAction="never"
+        android:icon="@drawable/baseline_menu_book_24"
+        />
+
+    <item
+        android:id="@+id/history"
+        android:orderInCategory="100"
+        android:title="History"
+        app:showAsAction="never"
+        android:icon="@drawable/outline_avg_pace_24"
+        />
+
+    <item
+        android:id="@+id/information"
+        android:orderInCategory="100"
+        android:title="More"
+        app:showAsAction="never"
+        android:icon="@drawable/sharp_announcement_24"/>
+</menu>

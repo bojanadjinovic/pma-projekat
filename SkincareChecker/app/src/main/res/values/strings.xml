@@ -1,0 +1,14 @@
+<resources>
+    <string name="home_title">Home</string>
+    <string name="welcome_user">Welcome, %1$s!</string>
+
+    <string name="ingredient_of_day">Ingredient of the Day</string>
+    <string name="ingredient_name">Niacinamide</string>
+
+    <string name="ingredient_desc">
+        Good for: Oily, acne-prone\nAvoid if: Very sensitive (high %)
+    </string>
+
+    <string name="learn_more">Learn more</string>
+    <string name="ingredient_image_desc">Ingredient background image</string>
+</resources>
