@@ -12,7 +12,6 @@ class SearchAdapter(
     private val items: MutableList<String>
 ) : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
-    // Opisi za svaki sastojak
     private val descriptions = mapOf(
         "Niacinamide" to "Controls oil, minimizes pores and strengthens skin barrier.",
         "Retinol" to "Anti-aging ingredient that boosts collagen and cell turnover.",
@@ -36,7 +35,6 @@ class SearchAdapter(
         "Green Tea Extract" to "Antioxidant that soothes and protects the skin."
     )
 
-    // Skin type tagovi
     private val skinTypes = mapOf(
         "Niacinamide" to "Oily",
         "Retinol" to "Dry",
@@ -88,10 +86,8 @@ class SearchAdapter(
 
             context.supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, learnFragment)
+                .addToBackStack(null)
                 .commit()
-
-            val bottomNav = context.findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.navbar)
-            bottomNav.selectedItemId = R.id.learn
         }
     }
 

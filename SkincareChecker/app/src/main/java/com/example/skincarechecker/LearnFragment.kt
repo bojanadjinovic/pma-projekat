@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 
 class LearnFragment : Fragment() {
@@ -148,36 +149,82 @@ class LearnFragment : Fragment() {
 
         val tvTitle = view.findViewById<TextView>(R.id.tvIngredientTitle)
         val tvDescription = view.findViewById<TextView>(R.id.tvIngredientDesc)
+        val tvSkinTypeTag = view.findViewById<TextView>(R.id.tvSkinTypeTag)
+
+        val cardIngredientHeader = view.findViewById<CardView>(R.id.cardIngredientHeader)
+        val cardBasicsHeader = view.findViewById<CardView>(R.id.cardBasicsHeader)
+        val cardMorning = view.findViewById<CardView>(R.id.cardMorning)
+        val cardEvening = view.findViewById<CardView>(R.id.cardEvening)
+        val cardDidYouKnow = view.findViewById<CardView>(R.id.cardDidYouKnow)
 
         val skinType = arguments?.getString("skin_type")
         val ingredientName = arguments?.getString("ingredient_name")
 
         when {
             skinType == "Oily" -> {
+                // Sakrivamo basics kartice
+                cardBasicsHeader.visibility = View.GONE
+                cardMorning.visibility = View.GONE
+                cardEvening.visibility = View.GONE
+                cardDidYouKnow.visibility = View.GONE
+                cardIngredientHeader.visibility = View.VISIBLE
+
                 tvTitle.text = "Best for Oily Skin"
                 tvDescription.text = "✔ Niacinamide — controls sebum and minimizes pores\n\n✔ Salicylic Acid — unclogs pores and prevents breakouts\n\n✔ Azelaic Acid — reduces redness and acne\n\n✔ Alpha Arbutin — brightens and evens skin tone\n\n⚠ Avoid heavy oils and thick creams"
+                tvSkinTypeTag.text = "Oily"
             }
             skinType == "Sensitive" -> {
+                cardBasicsHeader.visibility = View.GONE
+                cardMorning.visibility = View.GONE
+                cardEvening.visibility = View.GONE
+                cardDidYouKnow.visibility = View.GONE
+                cardIngredientHeader.visibility = View.VISIBLE
+
                 tvTitle.text = "Best for Sensitive Skin"
                 tvDescription.text = "✔ Allantoin — soothes irritation and redness\n\n✔ Aloe Vera — calms and hydrates gently\n\n✔ Niacinamide — strengthens skin barrier (low %)\n\n⚠ Avoid Retinol, high % acids and fragrances\n\n⚠ Always patch test new products"
+                tvSkinTypeTag.text = "Sensitive"
             }
             skinType == "Dry" -> {
+                cardBasicsHeader.visibility = View.GONE
+                cardMorning.visibility = View.GONE
+                cardEvening.visibility = View.GONE
+                cardDidYouKnow.visibility = View.GONE
+                cardIngredientHeader.visibility = View.VISIBLE
+
                 tvTitle.text = "Best for Dry Skin"
                 tvDescription.text = "✔ Hyaluronic Acid — deep hydration\n\n✔ Aloe Vera — soothes and moisturizes\n\n✔ Allantoin — softens and repairs skin\n\n✔ Retinol — anti-aging (start with low %)\n\n⚠ Avoid alcohol-based products and harsh cleansers"
+                tvSkinTypeTag.text = "Dry"
             }
             ingredientName != null -> {
+                // Dosli smo sa Search — sakrivamo basics kartice
+                cardBasicsHeader.visibility = View.GONE
+                cardMorning.visibility = View.GONE
+                cardEvening.visibility = View.GONE
+                cardDidYouKnow.visibility = View.GONE
+                cardIngredientHeader.visibility = View.GONE
+
                 val info = ingredientDatabase[ingredientName]
                 if (info != null) {
                     tvTitle.text = info.title
-                    tvDescription.text = "${info.description}\n\nBenefits:\n${info.benefits}\n\nBest for: ${info.skinType}"
+                    tvDescription.text = "${info.description}\n\n📋 Benefits:\n${info.benefits}"
+                    tvSkinTypeTag.text = info.skinType
                 } else {
                     tvTitle.text = ingredientName
                     tvDescription.text = "Details about $ingredientName coming soon."
+                    tvSkinTypeTag.text = "All Skin Types"
                 }
             }
             else -> {
+                // Default — prikazujemo sve kartice
+                cardIngredientHeader.visibility = View.VISIBLE
+                cardBasicsHeader.visibility = View.VISIBLE
+                cardMorning.visibility = View.VISIBLE
+                cardEvening.visibility = View.VISIBLE
+                cardDidYouKnow.visibility = View.VISIBLE
+
                 tvTitle.text = "Niacinamide"
                 tvDescription.text = "Niacinamide, also known as Vitamin B3, is a multi-purpose skincare ingredient that helps strengthen the skin barrier, improve texture, and reduce inflammation."
+                tvSkinTypeTag.text = "Oily / Combination"
             }
         }
 

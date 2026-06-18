@@ -8,7 +8,7 @@
     android:background="#E6E2C8"
     tools:context=".SearchFragment">
 
-    <!-- SEARCH BAR - uvek vidljiv gore -->
+    <!-- SEARCH BAR - uvek vidljiv -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,11 +39,12 @@
 
     </LinearLayout>
 
-    <!-- START VIEW - prikazuje se kad je polje prazno -->
+    <!-- START VIEW -->
     <androidx.core.widget.NestedScrollView
         android:id="@+id/searchStartLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:visibility="visible">
 
         <LinearLayout
@@ -83,6 +84,7 @@
                 android:layout_marginTop="12dp">
 
                 <TextView
+                    android:id="@+id/btnSearchOily"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_weight="1"
@@ -93,6 +95,7 @@
                     android:layout_marginEnd="8dp"/>
 
                 <TextView
+                    android:id="@+id/btnSearchSensitive"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_weight="1"
@@ -103,6 +106,7 @@
                     android:layout_marginEnd="8dp"/>
 
                 <TextView
+                    android:id="@+id/btnSearchDry"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_weight="1"
@@ -116,13 +120,16 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <!-- REZULTATI - prikazuje se kad korisnik kuca -->
+    <!-- LISTA REZULTATA -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerSearch"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:background="#E6E2C8"
         android:paddingHorizontal="16dp"
+        android:paddingBottom="16dp"
+        android:clipToPadding="false"
         android:visibility="gone"
         tools:listitem="@android:layout/simple_list_item_1"/>
 

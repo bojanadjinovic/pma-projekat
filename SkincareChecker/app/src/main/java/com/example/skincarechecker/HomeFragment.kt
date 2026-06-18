@@ -38,17 +38,17 @@ class HomeFragment : Fragment() {
 
         btnOily?.setOnClickListener {
             highlightButton(btnOily, btnSensitive, btnDry)
-            openLearnFragment("Oily")
+            openSearchWithFilter("Oily")
         }
 
         btnSensitive?.setOnClickListener {
             highlightButton(btnSensitive, btnOily, btnDry)
-            openLearnFragment("Sensitive")
+            openSearchWithFilter("Sensitive")
         }
 
         btnDry?.setOnClickListener {
             highlightButton(btnDry, btnOily, btnSensitive)
-            openLearnFragment("Dry")
+            openSearchWithFilter("Dry")
         }
 
         return view
@@ -63,16 +63,34 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun openLearnFragment(skinType: String) {
+    private fun openSearchWithFilter(skinType: String) {
+        val searchFragment = SearchFragment()
+        val bundle = Bundle().apply {
+            putString("skin_type_filter", skinType)
+        }
+        searchFragment.arguments = bundle
+
+        val activity = context as AppCompatActivity
+        activity.supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, searchFragment)
+            .addToBackStack(null)
+            .commit()
+
+        val bottomNav = activity.findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.navbar)
+        bottomNav.selectedItemId = R.id.search
+    }
+
+    private fun openLearnFragment(ingredientName: String) {
         val learnFragment = LearnFragment()
         val bundle = Bundle().apply {
-            putString("skin_type", skinType)
+            putString("ingredient_name", ingredientName)
         }
         learnFragment.arguments = bundle
 
         val activity = context as AppCompatActivity
         activity.supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, learnFragment)
+            .addToBackStack(null)
             .commit()
 
         val bottomNav = activity.findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.navbar)
