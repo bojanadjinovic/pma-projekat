@@ -78,6 +78,7 @@ class SearchAdapter(
 
         holder.itemView.setOnClickListener { view ->
             val context = view.context as AppCompatActivity
+            HistoryFragment.addToHistory(context, ingredientName)
             val learnFragment = LearnFragment()
             val bundle = Bundle().apply {
                 putString("ingredient_name", ingredientName)
