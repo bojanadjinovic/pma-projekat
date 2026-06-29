@@ -75,9 +75,6 @@ class HomeFragment : Fragment() {
             .replace(R.id.fragment_container, searchFragment)
             .addToBackStack(null)
             .commit()
-
-        val bottomNav = activity.findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.navbar)
-        bottomNav.selectedItemId = R.id.search
     }
 
     private fun openLearnFragment(ingredientName: String) {
@@ -93,8 +90,7 @@ class HomeFragment : Fragment() {
             .addToBackStack(null)
             .commit()
 
-        val bottomNav = activity.findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.navbar)
-        bottomNav.selectedItemId = R.id.learn
+
     }
 
     override fun onDestroyView() {

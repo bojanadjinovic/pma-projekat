@@ -20,6 +20,11 @@ class SearchFragment : Fragment() {
 
     private val filteredIngredients = mutableListOf<String>()
     private lateinit var adapter: SearchAdapter
+    private lateinit var startLayout: View
+    private lateinit var recycler: RecyclerView
+    private lateinit var btnOily: TextView
+    private lateinit var btnSensitive: TextView
+    private lateinit var btnDry: TextView
 
     private val skincareNames = listOf(
         "Niacinamide", "Retinol", "Salicylic Acid",
@@ -44,46 +49,22 @@ class SearchFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_search, container, false)
 
         val etSearch = view.findViewById<EditText>(R.id.etSearch)
-        val startLayout = view.findViewById<View>(R.id.searchStartLayout)
-        val recycler = view.findViewById<RecyclerView>(R.id.recyclerSearch)
-        val btnOily = view.findViewById<TextView>(R.id.btnSearchOily)
-        val btnSensitive = view.findViewById<TextView>(R.id.btnSearchSensitive)
-        val btnDry = view.findViewById<TextView>(R.id.btnSearchDry)
+        startLayout = view.findViewById(R.id.searchStartLayout)
+        recycler = view.findViewById(R.id.recyclerSearch)
+        btnOily = view.findViewById(R.id.btnSearchOily)
+        btnSensitive = view.findViewById(R.id.btnSearchSensitive)
+        btnDry = view.findViewById(R.id.btnSearchDry)
 
         recycler.layoutManager = LinearLayoutManager(requireContext())
         adapter = SearchAdapter(filteredIngredients)
         recycler.adapter = adapter
 
-        val skinTypeFilter = arguments?.getString("skin_type_filter")
-        if (skinTypeFilter != null) {
-            val filtered = skinTypeMap[skinTypeFilter] ?: emptyList()
-            startLayout.visibility = View.GONE
-            recycler.visibility = View.VISIBLE
-            adapter.updateList(filtered.toMutableList())
-        }
-
-        // Ucitavamo API
         ApiService.create().getIngredients().enqueue(object : Callback<List<IngredientData>> {
             override fun onResponse(call: Call<List<IngredientData>>, response: Response<List<IngredientData>>) {}
             override fun onFailure(call: Call<List<IngredientData>>, t: Throwable) {
                 Toast.makeText(requireContext(), "Podaci učitani lokalno", Toast.LENGTH_SHORT).show()
             }
         })
-
-        fun showList(list: List<String>) {
-            startLayout.visibility = View.GONE
-            recycler.visibility = View.VISIBLE
-            adapter.updateList(list.toMutableList())
-        }
-
-        fun highlightButton(selected: TextView, vararg others: TextView) {
-            selected.setBackgroundColor(android.graphics.Color.parseColor("#A8A86A"))
-            selected.setTextColor(android.graphics.Color.WHITE)
-            others.forEach {
-                it.setBackgroundColor(android.graphics.Color.parseColor("#EFE8B8"))
-                it.setTextColor(android.graphics.Color.parseColor("#6B6B4E"))
-            }
-        }
 
         btnOily.setOnClickListener {
             highlightButton(btnOily, btnSensitive, btnDry)
@@ -122,5 +103,34 @@ class SearchFragment : Fragment() {
         })
 
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val skinTypeFilter = arguments?.getString("skin_type_filter")
+        if (skinTypeFilter != null) {
+            showList(skinTypeMap[skinTypeFilter] ?: emptyList())
+            when (skinTypeFilter) {
+                "Oily" -> highlightButton(btnOily, btnSensitive, btnDry)
+                "Sensitive" -> highlightButton(btnSensitive, btnOily, btnDry)
+                "Dry" -> highlightButton(btnDry, btnOily, btnSensitive)
+            }
+        }
+    }
+
+    private fun showList(list: List<String>) {
+        startLayout.visibility = View.GONE
+        recycler.visibility = View.VISIBLE
+        adapter.updateList(list.toMutableList())
+    }
+
+    private fun highlightButton(selected: TextView, vararg others: TextView) {
+        selected.setBackgroundColor(android.graphics.Color.parseColor("#A8A86A"))
+        selected.setTextColor(android.graphics.Color.WHITE)
+        others.forEach {
+            it.setBackgroundColor(android.graphics.Color.parseColor("#EFE8B8"))
+            it.setTextColor(android.graphics.Color.parseColor("#6B6B4E"))
+        }
     }
 }
