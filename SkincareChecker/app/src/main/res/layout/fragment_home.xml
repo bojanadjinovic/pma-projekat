@@ -14,7 +14,6 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- TITLE -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -91,9 +90,7 @@
                         android:layout_marginTop="12dp" />
 
                 </LinearLayout>
-
             </FrameLayout>
-
         </androidx.cardview.widget.CardView>
 
         <!-- SKIN TYPES -->
@@ -197,7 +194,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="20dp"
             app:cardCornerRadius="24dp"
             app:cardBackgroundColor="#F4F2E6"
             app:cardElevation="3dp">
@@ -233,6 +230,92 @@
                     android:textColor="#6B6B4E"
                     android:layout_marginTop="8dp"
                     android:lineSpacingExtra="4dp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- COMPATIBILITY CARD -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="24dp"
+            app:cardBackgroundColor="#F4F2E6"
+            app:cardElevation="3dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ingredient Compatibility"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="#8A8A6A" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Can you mix these together?"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#6B6B4E"
+                    android:layout_marginTop="4dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="12dp">
+
+                    <Spinner
+                        android:id="@+id/spinnerIngredient1"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:background="#EFE8B8"
+                        android:layout_marginEnd="8dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:text="+"
+                        android:gravity="center"
+                        android:textSize="24sp"
+                        android:textColor="#6B6B4E"
+                        android:layout_marginEnd="8dp"/>
+
+                    <Spinner
+                        android:id="@+id/spinnerIngredient2"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:background="#EFE8B8"/>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnCheckCompatibility"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="Check"
+                    android:backgroundTint="#6B6B4E"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginTop="12dp"/>
+
+                <TextView
+                    android:id="@+id/tvCompatibilityResult"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#6B6B4E"
+                    android:layout_marginTop="12dp"
+                    android:visibility="gone"/>
 
             </LinearLayout>
 
